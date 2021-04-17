@@ -21,7 +21,7 @@ const OrderDetail = ({ order }) => {
 
     }
     useEffect(() => {
-        fetch('http://localhost:5000/updateOrderStatus', {
+        fetch('https://agile-wave-20364.herokuapp.com/updateOrderStatus', {
             method: 'PATCH',
             body: JSON.stringify({ info }),
             headers: {

@@ -18,7 +18,7 @@ const AddAdmin = () => {
         console.log(info);
         formData.append('email', info.email);
 
-        fetch('http://localhost:5000/dashboard/addadmin', {
+        fetch('https://agile-wave-20364.herokuapp.com/dashboard/addadmin', {
             method: 'POST',
             body: formData
         })

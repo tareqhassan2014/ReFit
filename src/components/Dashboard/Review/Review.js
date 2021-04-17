@@ -20,7 +20,7 @@ const Review = () => {
         formData.append('description', info.description);
         formData.append('companyName', info.companyName);
 
-        fetch('http://localhost:5000/dashboard/review', {
+        fetch('https://agile-wave-20364.herokuapp.com/dashboard/review', {
             method: 'POST',
             body: formData
         })

@@ -9,7 +9,7 @@ const ServiceBuyID = () => {
     const [service, setService] = useState({})
 
     useEffect(() => {
-        fetch(`http://localhost:5000/dashboard/book/${_id}`)
+        fetch(`https://agile-wave-20364.herokuapp.com/dashboard/book/${_id}`)
             .then((response) => response.json())
             .then(data => setService(data))
     }, [_id])

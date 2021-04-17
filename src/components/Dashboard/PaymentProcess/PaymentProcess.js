@@ -139,7 +139,7 @@ const CheckoutForm = ({ service }) => {
       const orderInfo = { ...billingDetails, ...service }
       orderInfo.status = "pending";
       const { image, _id, ...newOrderInfo } = orderInfo;
-      fetch('http://localhost:5000/addOrder', {
+      fetch('https://agile-wave-20364.herokuapp.com/addOrder', {
         method: 'POST',
         body: JSON.stringify(newOrderInfo),
         headers: {

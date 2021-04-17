@@ -7,7 +7,7 @@ const BookList = () => {
     const [book, setBook] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/orders',)
+        fetch('https://agile-wave-20364.herokuapp.com/orders',)
             .then(res => res.json())
             .then(data => setBook(data));
     }, [])
