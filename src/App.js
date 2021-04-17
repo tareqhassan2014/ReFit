@@ -1,24 +1,42 @@
-import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { createContext, useState } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
+import addServices from './components/AddServices/AddServices';
+import AddAdmin from './components/Dashboard/AddAdmin/AddAdmin';
+import BookList from './components/Dashboard/BookList/BookList';
+import OrderList from './components/Dashboard/OrderList/OrderList';
+import Review from './components/Dashboard/Review/Review';
+import ServiceBuyID from './components/Dashboard/ServiceBuyID/ServiceBuyID';
+import Home from './components/Home/Home/Home';
+import Login from './components/Login/Login/Login';
+export const UserContext = createContext();
 
 function App() {
+  const defaultUser = {
+    signed: false,
+    name: '',
+    email: '',
+    photo: '',
+    message: ''
+  }
+  const [user, setUser] = useState(defaultUser);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserContext.Provider value={[user, setUser]}>
+      <Router>
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/login" component={Login} />
+          <Route exact path="/dashboard/addServices" component={addServices} />
+          <Route exact path="/dashboard/bookList" component={BookList} />
+          <Route exact path="/dashboard/orderList" component={OrderList} />
+          <Route exact path="/dashboard/review" component={Review} />
+          <Route exact path="/dashboard/addadmin" component={AddAdmin} />
+          <Route exact path="/dashboard/book/:_id" component={ServiceBuyID} />
+        </Switch>
+      </Router>
+    </UserContext.Provider>
   );
 }
 
