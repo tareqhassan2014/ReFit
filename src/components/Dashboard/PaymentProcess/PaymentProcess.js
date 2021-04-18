@@ -9,7 +9,8 @@ import {
   useStripe
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { UserContext } from "../../../App";
 import "./styles.css";
 
 const CARD_OPTIONS = {
@@ -106,7 +107,7 @@ const ResetButton = ({ onClick }) => (
   </button>
 );
 
-const CheckoutForm = ({ service }) => {
+const CheckoutForm = ({ service, user }) => {
 
   const stripe = useStripe();
   const elements = useElements();
@@ -197,7 +198,7 @@ const CheckoutForm = ({ service }) => {
           placeholder="Jane Doe"
           required
           autoComplete="name"
-          value={billingDetails.name}
+          value={billingDetails.name || user.name}
           onChange={(e) => {
             setBillingDetails({ ...billingDetails, name: e.target.value });
           }}
@@ -209,7 +210,7 @@ const CheckoutForm = ({ service }) => {
           placeholder="janedoe@gmail.com"
           required
           autoComplete="email"
-          value={billingDetails.email}
+          value={billingDetails.email || user.email}
           onChange={(e) => {
             setBillingDetails({ ...billingDetails, email: e.target.value });
           }}
@@ -257,12 +258,12 @@ const stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
 
 const PaymentProcess = ({ service }) => {
 
-
+  const [user, setUser] = useContext(UserContext);
 
   return (
     <div className="AppWrapper">
       <Elements stripe={stripePromise} options={ELEMENTS_OPTIONS}>
-        <CheckoutForm service={service} />
+        <CheckoutForm service={service} user={user} />
       </Elements>
     </div>
   );

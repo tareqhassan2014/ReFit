@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { UserContext } from '../../../App';
 import Sidebar from '../Sidebar/Sidebar';
 
 const Review = () => {
 
     const [info, setInfo] = useState({});
+    const [user, setUser] = useContext(UserContext);
     
+    console.log(user);
+
     const handleBlur = e => {
         const newInfo = { ...info };
         newInfo[e.target.name] = e.target.value;
@@ -13,14 +17,16 @@ const Review = () => {
 
    
 
-    const handleSubmit = () => {
+    const handleSubmit = (event) => {
+        event.preventDefault();
         const formData = new FormData()
-        console.log(info);
+        
         formData.append('name', info.name);
         formData.append('description', info.description);
         formData.append('companyName', info.companyName);
-
-        fetch('https://agile-wave-20364.herokuapp.com/dashboard/review', {
+        formData.append('photo', user.photo);
+       
+        fetch('https://agile-wave-20364.herokuapp.com/addReview', {
             method: 'POST',
             body: formData
         })
@@ -43,7 +49,7 @@ const Review = () => {
                 <div className="row">
                     <div className="form-group col">
                         <label htmlFor="exampleInputEmail1">Your Name</label>
-                        <input onBlur={handleBlur} type="text" className="form-control" name="name" placeholder="Enter Your Name" />
+                        <input onBlur={handleBlur} type="text" className="form-control" name="name" placeholder="Enter Your Name"  defaultValue={user.name}/>
                     </div>
                     <div className="form-group col">
                         <label htmlFor="exampleInputPassword1">Company</label>
