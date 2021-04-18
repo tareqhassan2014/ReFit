@@ -1,7 +1,10 @@
 import { faFileAlt } from '@fortawesome/free-regular-svg-icons';
-import { faCalendar, faCog, faHome, faPlus, faSignOutAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faCalendar, faCog, faHome, faListOl, faPlus, faSignOutAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import firebase from "firebase/app";
+import "firebase/auth";
 import React, { useContext, useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../../App';
 import './Sidebar.css';
@@ -21,7 +24,18 @@ const Sidebar = () => {
             .then(data => setIsAdmin(data));
     }, [])
 
-    console.log(isAdmin);
+    // signing out
+    function signOutAll() {
+        firebase.auth().signOut()
+            .then(() => setUser({
+                signed: false,
+                name: '',
+                email: '',
+                password: '',
+                message: ''
+            }))
+            .catch(error => console.log(error))
+    }
 
     return (
         <div className="sidebar d-flex flex-column justify-content-between col-md-2 py-5 px-4" style={{ height: "100vh" }}>
@@ -62,14 +76,20 @@ const Sidebar = () => {
                         </li>
                         <li>
                             <Link to="/dashboard/orderList" className="text-white" >
-                                <FontAwesomeIcon icon={faCog} /> <span>Order List</span>
+                                <FontAwesomeIcon icon={faListOl} /> <span>Order List</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/dashboard/ManageSarvice" className="text-white" >
+                                <FontAwesomeIcon icon={faCog} /> <span>Manage Sarvice</span>
                             </Link>
                         </li>
                     </div>
                 }
             </ul>
             <div>
-                <Link to="/" className="text-white"><FontAwesomeIcon icon={faSignOutAlt} /> <span>Logout</span></Link>
+                <Button onClick={signOutAll} variant="danger" className="mx-2"><FontAwesomeIcon icon={faSignOutAlt} /> <span>Logout  {user.name}</span></Button>
+                <Link to="/" className="text-white"></Link>
             </div>
         </div>
     );

@@ -5,7 +5,7 @@ import Sidebar from '../Sidebar/Sidebar';
 const Review = () => {
 
     const [info, setInfo] = useState({});
-    const [user, setUser] = useContext(UserContext);
+    const [user] = useContext(UserContext);
     
     console.log(user);
 
@@ -49,7 +49,7 @@ const Review = () => {
                 <div className="row">
                     <div className="form-group col">
                         <label htmlFor="exampleInputEmail1">Your Name</label>
-                        <input onBlur={handleBlur} type="text" className="form-control" name="name" placeholder="Enter Your Name"  defaultValue={user.name}/>
+                        <input onBlur={handleBlur} type="text" className="form-control" name="name" placeholder="Enter Your Name"  value={user.name}/>
                     </div>
                     <div className="form-group col">
                         <label htmlFor="exampleInputPassword1">Company</label>

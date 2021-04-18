@@ -1,23 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './ServiceDetail.css';
 
 const ServiceDetail = ({ service }) => {
 
-    const { title, description, image, _id } = service;
+    const { title, description, image, _id, price } = service;
 
     return (
-        <div className="col-md-6 col-lg-6 col-xl-4 my-3">
-            <div className="services-block mb-lg-50">
-                <div className="inner-box">
-                    <div className="thumb">
-                        <img src={`data:image/png;base64,${image.img}`} style={{ width: 300 }} alt="" />
-                    </div>
-                    <div className="content">
-                        <h4><Link to={`/dashboard/book/${_id}`}>{title}</Link></h4>
-                        <p>{description}</p>
-                    </div>
+        <div className="col-md-6 col-lg-4 my-3">
+            <Link to={`/dashboard/book/${_id}`} style={{ textDecoration: 'none' }}>
+                <div className="p-3 serviceCard h-100">
+                    <img id="icon" src={`data:image/png;base64,${image.img}`} alt="Avatar" width="70px" />
+                    <h4 className="my-3 text-dark"><b>{title}</b></h4>
+                    <span>${price}</span>
+                    <p className="text-justify text-secondary">{description}</p>
                 </div>
-            </div>
+            </Link>
         </div>
     );
 };

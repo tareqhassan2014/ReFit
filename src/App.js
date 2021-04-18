@@ -5,6 +5,7 @@ import './App.css';
 import AddAdmin from './components/Dashboard/AddAdmin/AddAdmin';
 import AddServices from './components/Dashboard/AddServices/AddServices';
 import BookList from './components/Dashboard/BookList/BookList';
+import ManageSarvice from './components/Dashboard/ManageSarvice/ManageSarvice';
 import OrderList from './components/Dashboard/OrderList/OrderList';
 import Review from './components/Dashboard/Review/Review';
 import ServiceBuyID from './components/Dashboard/ServiceBuyID/ServiceBuyID';
@@ -40,6 +41,10 @@ function App() {
          
           <PrivateRoute  exact path="/dashboard/orderList">
             <OrderList />
+          </PrivateRoute>
+
+          <PrivateRoute  exact path="/dashboard/ManageSarvice">
+            <ManageSarvice />
           </PrivateRoute>
         
           <PrivateRoute exact path="/dashboard/review">

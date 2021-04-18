@@ -13,13 +13,16 @@ const Navbar = () => {
     // check for admin
     useEffect(() => {
         if (user.signed) {
-            fetch(`https://radiant-hamlet-66107.herokuapp.com/checkAdmin/${user.email}`)
+            fetch('https://agile-wave-20364.herokuapp.com/dashboard/isAmin', {
+                method: 'POST',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify({ email: user.email })
+            })
                 .then(res => res.json())
-                .then(data => {
-                    setAdmin(data);
-                })
+                .then(data => setAdmin(data));
         }
     }, [user.signed, user.email])
+
 
     // signing out
     function signOutAll() {
@@ -59,20 +62,24 @@ const Navbar = () => {
                         </li>
                         <li className="nav-item mx-2">
                             {
+                                user.signed && admin &&
+                                <Link to="/dashboard/orderList" className="nav-link text-dark">Dashboard</Link>
+                            }
+                        </li>
+                        <li className="nav-item mx-2">
+                            {
+                                user.signed && !admin &&
+                                <Link to="/dashboard/bookList" className="nav-link text-dark">Book List</Link>
+                            }
+                        </li>
+                        <li className="nav-item mx-2">
+                            {
                                 user.signed ?
                                     <Button onClick={signOutAll} variant="danger" className="mx-2">Logout {user.name}</Button> :
                                     <Link to="/login">
                                         <Button variant="dark" className="mx-2">Login</Button>
                                     </Link>
                             }
-                            {
-                                user.signed && admin &&
-                                <Link to="/dashboard/admin" className="nav-link btn btn-dark text-white px-3">Admin Dashboard</Link>
-                            }
-                            {/* {
-                                user.signed && !admin &&
-                                <h5 className="nav-link"><b>{user.name}</b></h5>
-                            } */}
                         </li>
                     </ul>
                 </div>
