@@ -6,11 +6,10 @@ const ContactUs = () => {
             <div className='w-75 row mt-3 pt-5 justify-content-between justify-content-center'>
                 <div className='col-md-6'>
                     <h3 style={{ fontSize: '34px', fontWeight: '600' }} className='mb-4'>
-                        Let us handle your <br /> project, professionally.
+                        Send Us Message
                     </h3>
                     <p>
-                        With well written codes, we build amazing apps <br /> for all platforms,
-                        mobile and web apps in general.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error repellendus, ex culpa recusandae, velit, omnis dolores, possimus quis voluptatibus
                     </p>
                 </div>
 

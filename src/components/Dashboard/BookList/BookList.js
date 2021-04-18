@@ -1,16 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { UserContext } from '../../../App';
 import Sidebar from '../Sidebar/Sidebar';
 import BookDitail from './BookDitail';
 
 const BookList = () => {
 
     const [book, setBook] = useState([])
+    const [user, setUser] = useContext(UserContext);
 
     useEffect(() => {
-        fetch('https://agile-wave-20364.herokuapp.com/orders',)
+        fetch('http://localhost:5000/booking', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ email: user.email })
+        })
             .then(res => res.json())
             .then(data => setBook(data));
-    }, [])
+    }, [user])
 
     return (
         <section className="container-fluid row">

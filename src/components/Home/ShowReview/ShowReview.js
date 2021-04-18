@@ -20,10 +20,10 @@ const ShowReview = () => {
                             <div className="text-center mb-60">
                                 <div className="tm-sc tm-sc-section-title section-title section-title-style1 text-center line-bottom-style4-attached-double-lines1">
                                     <div className="title-wrapper">
-                                        <h2 className="title"> <span className="">Our </span> <span className="text-theme-colored1">Service</span> Areas</h2>
+                                        <h2 className="title"> <span className="">Our </span> <span className="text-theme-colored1">Customers </span> Say</h2>
                                         <div className="title-seperator-line"></div>
                                         <div className="paragraph">
-                                            <p>Explore Our Completed Services! Consectetur adipiscing elitt elit tellus, luctus pulvinar dapibus leoconsectetur luctus nec.</p>
+                                            <p>Explore Our Completed Projects! Consectetur adipiscing elitt elit tellus, luctus pulvinar dapibus leoconsectetur luctus nec.</p>
                                         </div>
                                     </div>
                                 </div>
