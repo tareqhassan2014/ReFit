@@ -9,7 +9,7 @@ const BookList = () => {
     const [user, setUser] = useContext(UserContext);
 
     useEffect(() => {
-        fetch('http://localhost:5000/booking', {
+        fetch('https://agile-wave-20364.herokuapp.com/booking', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify({ email: user.email })
